@@ -1,7 +1,14 @@
-#!/bin/sh
-
 echo "Installing gnubg"
+
 mkdir -p /app/vender
+cd /app/vender
+curl -O http://ftp.gnu.org/gnu/gawk/gawk-4.1.3.tar.gz
+tar -zxvf gawk-4.1.3.tar.gz
+cd gawk-4.1.3
+./configure --prefix=/app/vender
+make
+make install
+
 cd /app/vender
 curl -O http://ftp.gnu.org/gnu/glibc/glibc-2.23.tar.gz
 tar -xzvf glibc-2.23.tar.gz
@@ -9,3 +16,4 @@ cd glibc-2.23
 mkdir glibc-build
 cd glibc-build
 ../../glibc-2.23/configure
+
