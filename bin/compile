@@ -1,21 +1,29 @@
 echo "Installing gnubg"
 
-mkdir -p /app/vender
-cd /app/vender
+INSTALL_DIR=/app/gnubg
+
+mkdir -p ${INSTALL_DIR}
 export PATH=$PATH:/app/vender/bin
 
-curl -O http://ftp.gnu.org/gnu/gawk/gawk-4.1.3.tar.gz
-tar -zxvf gawk-4.1.3.tar.gz
-cd gawk-4.1.3
-./configure --prefix=/app/vender
-make
-make install
 
-cd /app/vender
-curl -O http://ftp.gnu.org/gnu/glibc/glibc-2.23.tar.gz
-tar -xzvf glibc-2.23.tar.gz
-cd glibc-2.23
-mkdir glibc-build
-cd glibc-build
-../../glibc-2.23/configure --prefix=/app/vender
+gawk () {
+	cd $1
+	curl -O http://ftp.gnu.org/gnu/gawk/gawk-4.1.3.tar.gz
+	tar -zxvf gawk-4.1.3.tar.gz
+	cd gawk-4.1.3
+	./configure --prefix=$1
+	make
+	make install
+}
 
+glibc () {
+	cd $1
+	curl -O http://ftp.gnu.org/gnu/glibc/glibc-2.23.tar.gz
+	tar -xzvf glibc-2.23.tar.gz
+	cd glibc-2.23
+	mkdir glibc-build
+	cd glibc-build
+	../../glibc-2.23/configure --prefix=$1
+}
+gawk $1
+glibc $1
