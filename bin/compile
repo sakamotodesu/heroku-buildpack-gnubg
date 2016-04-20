@@ -3,7 +3,7 @@ echo "Installing gnubg"
 INSTALL_DIR=/app/gnubg
 
 mkdir -p ${INSTALL_DIR}
-export PATH=$PATH:/app/vender/bin
+export PATH=$PATH:${INSTALL_DIR}/bin
 
 
 gawk () {
@@ -23,7 +23,9 @@ glibc () {
 	cd glibc-2.23
 	mkdir glibc-build
 	cd glibc-build
-	../../glibc-2.23/configure --prefix=$1
+	bash ../../glibc-2.23/configure --prefix=$1
+	make
+	make install
 }
-gawk $1
-glibc $1
+gawk ${INSTALL_DIR}
+glibc ${INSTALL_DIR}
