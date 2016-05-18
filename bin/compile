@@ -27,5 +27,10 @@ glibc () {
 	make
 	make install
 }
+gnubg () {
+	cd $1
+	curl -O http://gnubg.org/media/sources/gnubg-release-1.05.000-sources.tar.gz
+	tar -xzvf gnubg-release-1.05.000-sources.tar.gz
+}
 gawk ${INSTALL_DIR}
 glibc ${INSTALL_DIR}
