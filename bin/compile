@@ -1,10 +1,13 @@
 echo "Installing gnubg"
 
+INSTALL_DIR=/app/gnubg
+VERSION=1.05.000
+
 gnubg () {
 	cd $1
 	wget http://gnubg.org/media/sources/gnubg-release-1.05.000-sources.tar.gz
-	tar -xzvf gnubg-release-1.05.000-sources.tar.gz
-	cd gnubg-1.05.000
+	tar -xzvf gnubg-release-$2-sources.tar.gz
+	cd gnubg-$2
 	./configure --prefix=$1
 	make
 	make install
@@ -12,4 +15,4 @@ gnubg () {
 
 INSTALL_DIR=/app/gnubg
 mkdir -p ${INSTALL_DIR}
-gnubg ${INSTALL_DIR}
+gnubg ${INSTALL_DIR} ${VERSION}
